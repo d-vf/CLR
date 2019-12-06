@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.6/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+<link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">MIT Computational Law</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Research.html">Research</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="research-papers-and-projects" class="section level2">
+<h2>Research papers and projects</h2>
+<div id="htmlwidget-2abb4997f7b488d94cc7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2abb4997f7b488d94cc7">{"x":{"filter":"top","filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128"],["Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Contracts","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Formalising Regulations","Modelling Performance","Modelling Performance","Modelling Performance","Modelling Performance","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts","Formal Verification of Smart Contracts"],["<a href=\"https://www.jstor.org/stable/29762866?seq=1\"> JURIMETRICS THE NEXT STEP FORWARD<\/a>","<a href=\"http://digitalcommons.law.yale.edu/cgi/viewcontent.cgi?article=5523&context=fss_papers\"> Symbolic Logic: A Raz Symbolic Logic: A Razor-Edged Tool for Dr ool for Drafting and Interpr afting and Interpreting Legal Documents <\/a>","<a href=\"https://books.google.pt/books?id=3Cc9AAAAIAAJ&redir_esc=y\"> Computer Science and Law<\/a>","<a href=\"https://stacks.stanford.edu/file/druid:ms585mf7546/ms585mf7546.pdf\"> Some Speculation about Artificial Intelligence and Legal Reasoning<\/a>","<a href=\"http://opim.wharton.upenn.edu/~sok/papers/s/p370-sergot.pdf\"> the British Nationality Act was encoded in Prolog<\/a>","<a href=\"https://pdfs.semanticscholar.org/0256/614d1dc55962708db9b791f70a29370f1d76.pdf\"> The Role of Common Ontology in Achieving Sharable, Reusable Knowledge Bases<\/a>","<a href=\"https://link.springer.com/journal/10506\"> Artificial Intelligence and Law<\/a>","<a href=\"https://link.springer.com/article/10.1007%2FBF00118479?LI=true\"> Isomorphism and legal knowledge based systems<\/a>","<a href=\"https://en.wikipedia.org/wiki/Attempto_Controlled_English\"> Attempto Controlled English<\/a>","<a href=\"http://executable-english.com/\"> Executable English<\/a>","<a href=\"http://www.fon.hum.uva.nl/rob/Courses/InformationInSpeech/CDROM/Literature/LOTwinterschool2006/szabo.best.vwh.net/idea.html\"> The Idea of Smart Contracts<\/a>","<a href=\"https://arxiv.org/pdf/cs/0106005.pdf\"> The Representation of Legal Contracts<\/a>","<a href=\"https://www.lexifi.com/files/resources/MLFiPaper.pdf\"> Composing Contracts: An Adventure in Financial Engineering<\/a>","<a href=\"https://nakamotoinstitute.org/contract-language/\"> A Formal Language for Analysing Contracts<\/a>","<a href=\"https://en.wikipedia.org/wiki/Semantics_of_Business_Vocabulary_and_Business_Rules\"> Semantics of Business Vocabulary and Business Rules<\/a>","<a href=\"https://iang.org/papers/ricardian_contract.html\"> The Ricardian Contract<\/a>","<a href=\"http://wiki.ruleml.org/index.php/RuleML_Home\"> RuleML Inc.<\/a>","<a href=\"https://pdfs.semanticscholar.org/ebca/1f32ac887a975b60552920b9b1be619a87a2.pdf\"> Modelling Contracts Using RuleML<\/a>","<a href=\"https://www.lexifi.com/files/resources/TimeTravel.pdf\"> Structured Products and Time Travel,<\/a>","<a href=\"https://spiral.imperial.ac.uk/bitstream/10044/1/529/1/Using%20the%20event%20calculus.pdf\"> USING THE EVENT CALCULUS FOR TRACKING THE NORMATIVE STATE OF CONTRACTS<\/a>","<a href=\"https://www.lexifi.com/files/resources/MLFiWhitePaper.pdf\"> Structuring, Pricing, and Processing Complex Financial Products with MLFi,<\/a>","<a href=\"http://rbsla.ruleml.org/docs/37910209.pdf\"> ContractLog: An Approach to Rule Based Monitoring and Execution of Service Level Agreements <\/a>","<a href=\"http://richard.myweb.cs.uwindsor.ca/PUBLICATIONS/NLI_LFP_SURVEY_DRAFT.pdf\"> Realization of Natural Language Interfaces Using Lazy Functional Programming<\/a>","<a href=\"http://www.cse.chalmers.se/~gersch/slides-talks/slides-CL-ModelChecking.pdf\"> Towards a Formal Language for Electronic Contracts<\/a>","<a href=\"http://www.cse.chalmers.se/~gersch/icail09.pdf\"> Abstract Specification of Legal Contracts ∗<\/a>","<a href=\"http://folk.uio.no/gerardo/ifm2009.pdf\"> Challenges in the Specification of Full Contracts ?<\/a>","<a href=\"https://www.nap.edu/catalog/12841/technical-capabilities-necessary-for-regulation-of-systemic-financial-risk-summary\"> Technical Capabilities Necessary for Regulation of Systemic Financial Risk<\/a>","<a href=\"https://arxiv.org/abs/1109.2658\"> A Software Tool for Legal Drafting<\/a>","<a href=\"https://link.springer.com/chapter/10.1007/978-3-642-24690-6_2\"> Formal Methods as a Link between Software Code and Legal Rules<\/a>","<a href=\"https://drive.google.com/file/d/0BxOaYa8pqqSwbl9GMWtwVU5HSFU/view\"> Contract Formalisation and Modular Implementation of Domain-Specific Languages<\/a>","<a href=\"https://lawreview.law.ucdavis.edu/issues/46/2/Articles/46-2_Surden.pdf\"> Computable Contracts<\/a>","<a href=\"https://www.bis.org/review/r120315g.pdf\"> Andrew G Haldane: Towards a common financial language<\/a>","<a href=\"https://theses.ncl.ac.uk/jspui/handle/10443/1814\"> A toolkit for model checking of electronic contracts<\/a>","<a href=\"http://remu.grammaticalframework.org/\"> REMU: Reliable Multilingual Digital Communication: Methods and Applications<\/a>","<a href=\"http://remu.grammaticalframework.org/contracts/\"> REMU: Reliable Multilingual Digital Communication: Methods and Applications<\/a>","<a href=\"https://link.springer.com/chapter/10.1007%2F978-3-319-07443-6_18\"> These Are Your Rights<\/a>","<a href=\"http://ceur-ws.org/Vol-1417/paper8.pdf\"> Automated Decision Support for Financial Regulatory/Policy Compliance, using Textual Rulelog<\/a>","<a href=\"http://compk.stanford.edu/\"> Computable Contracts project<\/a>","<a href=\"http://lexpert.com/wp-content/uploads/2015/02/Haapio-Next_Generation_Contracts.pdf\"> Next Generation Contracts: A Paradigm Shift<\/a>","<a href=\"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2538224\"> Contracts as Automaton: The Computational Representation of Financial Agreements<\/a>","<a href=\"https://gupea.ub.gu.se/bitstream/2077/40725/1/gupea_2077_40725_1.pdf\"> Analysing normative contracts On the semantic gap between natural and formal languages<\/a>","<a href=\"https://arxiv.org/abs/1608.00771\"> Smart Contract Templates: foundations, design landscape and research directions<\/a>","<a href=\"https://www.law.ox.ac.uk/business-law-blog/blog/2016/07/smart-contracts-bridging-gap-between-expectation-and-reality\"> Smart Contracts: Bridging the Gap Between Expectation and Reality<\/a>","<a href=\"https://www.springer.com/gp/book/9783319195742\"> Logic in the Theory and Practice of Lawmaking<\/a>","<a href=\"https://www.omg.org/spec/DMN/\"> Decision Model and Notation<\/a>","<a href=\"https://docs.camunda.org/manual/7.4/reference/dmn11/feel/\"> Friendly Enough Expression Language (FEEL)<\/a>","<a href=\"https://medium.com/@ConsenSys/what-if-we-developed-legal-contracts-like-we-developed-software-applications-1b5bc8fbb915#.uoiiqx9ku\"> What if we developed legal contracts like we developed software applications?<\/a>","<a href=\"https://www.ai.rug.nl/~verheij/AI4J/papers/AI4J_paper_9_agarwal.pdf\"> Toward Machine-Understandable Contracts<\/a>","<a href=\"https://vanillacrypto.com/\"> Vanilla Crypto. <\/a>","<a href=\"https://www.ibtimes.co.uk/barclays-smart-contract-templates-heralds-first-ever-public-demo-r3s-corda-platform-1555329\"> Barclays' Smart Contract Templates stars in first ever public demo of R3's Corda platform<\/a>","<a href=\"http://clacklang.org/\"> clacklang<\/a>","<a href=\"https://legalese.com/static1.squarespace.com/static/55f73743e4b051cfcc0b02cf/t/5784f5dbebbd1aba2d3e400e/1468331499513/R3+Smart+Contract+Templates+Summit+_FINAL.pdf\"> <\/a>","<a href=\"https://ieeexplore.ieee.org/document/7774648\">  A Domain-Specific Language for Normative Texts with Timing Constraints<\/a>","<a href=\"https://writings.stephenwolfram.com/2016/10/computational-law-symbolic-discourse-and-the-ai-constitution/\"> Computational Law, Symbolic Discourse and the AI Constitution<\/a>","<a href=\"https://www.npr.org/sections/thetwo-way/2016/10/10/497355524/nobel-prize-in-economics-given-to-oliver-hart-and-bengt-holmstr-m?t=1575305130616\"> 2016 Nobel Prize in Economics<\/a>","<a href=\"https://www.researchgate.net/publication/311651290_Reasoning_about_Partial_Contracts\"> Reasoning about Partial Contracts<\/a>","<a href=\"https://gup.ub.gu.se/publication/257491\"> Contracts and Computation — Formal modelling and analysis for normative natural language<\/a>","<a href=\"http://lps.doc.ic.ac.uk/\"> Logic Production Systems<\/a>","<a href=\"http://logicalcontracts.com/\"> Logical Contracts<\/a>","<a href=\"http://www.cse.chalmers.se/~gersch/my-publications.html\"> Gerardo Schneider's publications<\/a>","<a href=\"http://cosodis.project.ifi.uio.no/\"> COSoDIS project - Contract-Oriented Software Development for Internet Service<\/a>","<a href=\"http://www.cs.um.edu.mt/svrg/Tools/CLTool/Papers/ictac2009.pdf\"> Automatic Conflict Detection on Contracts⋆<\/a>","<a href=\"https://www.gr3c.com/\"> GR3C<\/a>","<a href=\"https://www.w3.org/community/odrl/\"> ODRL<\/a>","<a href=\"https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=legalruleml\"> ASIS LegalRuleML TC<\/a>","<a href=\"https://www.w3.org/2016/poe/wiki/Main_Page\"> Permissions and Obligations Expression Working Group<\/a>","<a href=\"http://www.dslfin.org/resources.html\"> Financial Domain-Specific Language Listing<\/a>","<a href=\"https://iptc.org/standards/rightsml/\"> RightsML<\/a>","<a href=\"http://www.abajournal.com/legalrebels/article/welcome_to_the_future_a_travel_guide_to_tomorrows_lawyer_careers\"> Welcome to the future: A travel guide to tomorrow’s legal careers<\/a>","<a href=\"https://vcl.gforge.uni.lu/\"> Visual Contract Language (VCL).<\/a>","<a href=\"http://courses.csail.mit.edu/iap/lawiscode/\"> Law is Code<\/a>","<a href=\"https://harvardmagazine.com/2000/01/code-is-law-html\"> Code Is Law<\/a>","<a href=\"https://en.wikipedia.org/wiki/Automatic_programming\"> Automatic programming<\/a>","<a href=\"https://www.oracle.com/applications/oracle-policy-automation/\"> Oracle Policy Automation<\/a>","<a href=\"https://en.wikipedia.org/wiki/Carl_Malamud\"> Carl Malamud<\/a>","<a href=\"https://www.linkedin.com/in/tombruce/\"> Director Emeritus at Legal Information Institute<\/a>","<a href=\"http://opim.wharton.upenn.edu/~sok/papers/s/p370-sergot.pdf\"> The British Nationality Act as a Logic Program<\/a>","<a href=\"http://wyner.info/research/Papers/2012/WynerOnBench-CaponEtAl1987.pdf\"> Logic Programming for Large Scale Applications in Law: A Formalisation of Supplementary Benefit Legislation<\/a>","<a href=\"https://www.doc.ic.ac.uk/~rak/papers/negation%20legislation.pdf\">  The Treatment of Negation in Logic Programs for Representing Legislation<\/a>","<a href=\"http://www.kl.i.is.nagoya-u.ac.jp/jurisin2016/\"> Foundation for Legal Knowledge Based Systems (JURIX)<\/a>","<a href=\"https://ieeexplore.ieee.org/abstract/document/1704048/?reload=true\"> Towards Regulatory Compliance: Extracting Rights and Obligations to Align Requirements with Regulations<\/a>","<a href=\"http://www.lrec-conf.org/proceedings/lrec2010/workshops/W23.pdf\"> LREC2010 Workshop Proceedings<\/a>","<a href=\"https://scholarship.law.cornell.edu/cgi/viewcontent.cgi?referer=https://www.google.com.sg/&httpsredir=1&article=1075&context=clsops_papers\"> Digitizing the World's Laws<\/a>","<a href=\"http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.461.4022&rep=rep1&type=pdf\"> On Rule Extraction from Regulations<\/a>","<a href=\"http://www.let.rug.nl/basile/papers/WynerEtAlCCBoxerJURIX2012.pdf\"> An Empirical Approach to the Semantic Representation of Laws<\/a>","<a href=\"https://www.youtube.com/watch?v=efr9VctcMe8\"> FutureLaw | New Breakthroughs in Computational Law<\/a>","<a href=\"http://www.cocounsel.co/\"> COCOUNSEL.CO<\/a>","<a href=\"https://xcential.com/try-legispro/\"> LegisPro<\/a>","<a href=\"https://www.youtube.com/watch?v=KBI8_tv2VDM&list=PL48E61C121CAD0E1B&index=46\"> FutureLaw 2013: Computational Law and Contracts<\/a>","<a href=\"https://www.youtube.com/watch?v=XQgqFr6JuTE\"> FutureLaw 2014: Forging an Open Legal Document Ecosystem<\/a>","<a href=\"https://github.com/WAlschner/Semantic-Analysis-Regulations\"> Semantic Analysis of Canadian Regulations<\/a>","<a href=\"https://github.com/mpoulshock/HammurabiProject\"> The Hammurabi Project<\/a>","<a href=\"https://github.com/mpoulshock/hammurabi\"> Hammurabi Project<\/a>","<a href=\"https://en.wikipedia.org/wiki/XBRL\"> XBRL<\/a>","<a href=\"http://lambda-the-ultimate.org/node/3922\"> SEC interested in formalising contracts ... in Python<\/a>","<a href=\"https://en.wikipedia.org/wiki/FpML\"> FpML<\/a>","<a href=\"https://www.coindesk.com/press-releases/bisnode-coinfirm-take-compliance-business-intelligence-next-level-blockchain\"> bisnode-coinfirm-take-compliance-business-intelligence-next-level-blockchain<\/a>","<a href=\"https://www.coindesk.com/ibm-bluemix-garage-kyck-singapore-blockchain\"> IBM Unveils Blockchain Project For KYC Compliance<\/a>","<a href=\"https://alio.dc.uba.arpublications/2011/GMS11/gms_flacos-2011-tr.pdf\"> FormaLex published about formalising the Argentinean Customer Protection Act in 2017<\/a>","<a href=\"https://www.coindesk.com/ubs-launch-live-ethereum-platform-barclays-credit-suisse\"> UBS to Launch Live Ethereum Compliance Platform<\/a>","<a href=\"https://pure.uvt.nl/ws/portalfiles/portal/10567176/Aangepast_proefschrift_Xu_definitief.pdf\"> Monitoring multi-party contracts for E-business<\/a>","<a href=\"https://www.computer.org/csdl/proceedings-article/hicss/2007/27550063b/12OmNy2rS3l\"> Formal Specification of Web Service Contracts for Automated Contracting and Monitoring<\/a>","<a href=\"http://homepages.cs.ncl.ac.uk/carlos.molina/home.formal/IoannisSfyrakisDissertation2012.pdf\"> Implementing a Contract Compliance Checker for Monitoring Contracts<\/a>","<a href=\"https://erisindustries.com/components/erislegal.html?redirect=true\"> eris:legal<\/a>","<a href=\"https://dl.acm.org/citation.cfm?id=2841316\"> Verified Functional Programming in Agda<\/a>","<a href=\"http://cufp.org/2014/t5-edwin-brady-idris-practical-software-verification-with-Dependent-types.html\"> Idris: Practical Software Verification with Dependent Types<\/a>","<a href=\"http://why3.lri.fr/\"> Why3<\/a>","<a href=\"https://coq.inria.fr/\"> Coq<\/a>","<a href=\"https://formalmethods.wikia.org/wiki/Z_notation\"> Z notation<\/a>","<a href=\"https://www.theatlantic.com/technology/archive/2017/09/saving-the-world-from-code/540393/\"> The Coming Software Apocalypse<\/a>","<a href=\"https://www.reddit.com/r/ethereum/comments/4oimok/can_we_please_never_again_put_100m_in_a_contract/\"> Can we please never again put 100m in a contract without formal correctness proofs?<\/a>","<a href=\"https://www.reddit.com/r/ethereum/comments/4opjov/the_bug_which_the_dao_hacker_exploited_was_not/\"> The bug which the \"DAO hacker\" exploited was *not* \"merely in the DAO itself\" (ie, *separate* from Ethereum). The bug was in Ethereum's *language design* itself (Solidity / EVM - Ethereum Virtual Machine) - shown by the \"recursive call bug discovery\" divulged (and dismissed) on slock.it last week.<\/a>","<a href=\"https://gist.github.com/chriseth/c4a53f201cd17fc3dd5f8ddea2aa3ff9\"> Formal verification for re-entrant Solidity contracts<\/a>","<a href=\"https://github.com/pirapira/awesome-ethereum-virtual-machine#programming-languages-that-compile-into-evm\"> Programming Languages that Compile into EVM<\/a>","<a href=\"https://di.ku.dk/hjemmesider/ansatte/hvitved/publications/hvitved10flacosb.pdf\">  A Survey of Formal Languages for Contracts from FLACOS 2010<\/a>","<a href=\"https://hub.digitalasset.com/blog/introducing-the-digital-asset-modeling-language-a-powerful-alternative-to-smart-contracts-for-financial-institutions\"> Digital Asset Modeling Language<\/a>","<a href=\"https://www.coindesk.com/chain-ivy-blockchain-smart-contract-language\"> Chain Reveals ‘Ivy’ Smart Contract Language in First Public Demo<\/a>","<a href=\"https://www.microsoft.com/en-us/research/people/nswamy/?from=http%3A%2F%2Fresearch.microsoft.com%2Fen-us%2Fum%2Fpeople%2Fnswamy%2Fpapers%2Fsolidether.pdf\"> Formal Verification of Smart Contracts<\/a>","<a href=\"http://hiperfit.dk/pdf/icfp15-contracts-final.pdf\"> Certified Symbolic Management ofFinancial Multi-party Contracts ∗<\/a>","<a href=\"http://hjemmesider.diku.dk/~simonsen/papers/c2.pdf\"> Compositional Specification of Commercial Contracts<\/a>","<a href=\"http://publications.lib.chalmers.se/records/fulltext/234939/234939.pdf\"> Safer smart contracts through type-driven development<\/a>","<a href=\"https://www.researchgate.net/publication/303679677_Evaluation_of_Logic-Based_Smart_Contracts_for_Blockchain_Systems\"> Evaluation of Logic-Based Smart Contracts for Blockchain Systems<\/a>","<a href=\"https://dl.acm.org/citation.cfm?id=2993611\"> Formal Verification of Smart Contracts: Short Paper<\/a>","<a href=\"https://www.computer.org/csdl/magazine/co/2017/09/mco2017090050/13rRUxC0SHL\"> Validation and Verification of Smart Contracts: A Research Agenda<\/a>","<a href=\"https://www.adjoint.io/\"> Adjoint<\/a>","<a href=\"https://www.kadena.io/pact\">  Kadena, with PACT<\/a>","<a href=\"https://tezos.com/\"> Tezos<\/a>","<a href=\"https://www.cardano.org/en/home/\"> Cardano<\/a>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th><em>Theme<\/em><\/th>\n      <th><em>Title<\/em><\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}],"orderCellsTop":true}},"evals":[],"jsHooks":[]}</script>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
